@@ -2,11 +2,12 @@
 html {
   box-sizing: border-box;
   font-size: 16px;
-  --gunmetal: #213131ff;
-  --vanilla: #ece4b7ff;
+  --gunmetal: rgb(33, 41, 49);
+  --vanilla: rgb(248, 245, 222);
   --coquelicot: #ff4a1cff;
   --raisin-black: #171a26ff;
-  --light-sea-green: #07beb8ff;
+  --light-sea-green: rgb(73, 84, 89);
+  background-color: var(--gunmetal);
 }
 *,
 *::before,
@@ -20,5 +21,292 @@ body {
 
 /* debugging */
 * {
-  outline: 1px solid grey;
+  /* outline: 1px solid grey; */
+}
+
+/* grid containers */
+.container {
+  display: grid;
+}
+.outer {
+  min-height: 100vh;
+  grid-template: 12rem minmax(600px, 1fr) / minmax(260px, 20%) 1fr;
+}
+
+/* ASIDE */
+.aside {
+  padding: 25px;
+  grid-area: 1 / 1 / -1 / 2;
+  background-color: var(--light-sea-green);
+  grid-template-rows: min-content min-content min-content;
+  gap: 30px;
+}
+.aside > div {
+  grid-auto-rows: 50px;
+  gap: 5px;
+}
+.aside > div > div {
+  display: grid;
+  grid-template-columns: 50px auto;
+}
+
+/* HEADER */
+.header {
+  background-color: var(--gunmetal);
+  grid-template: 2fr 3fr / 5fr minmax(400px, 3fr);
+}
+.search-bar {
+  margin-left: 25px;
+  align-items: center;
+  grid-template-columns: 80px auto;
+}
+.bar {
+  background-color: var(--light-sea-green);
+  height: 35px;
+  margin-right: 20px;
+  margin-left: -15px;
+  border-radius: 25px;
+}
+.search-icon {
+  background-image: url(../images/search.svg);
+  background-repeat: no-repeat;
+  align-self: stretch;
+  margin: 23px 20px 20px 20px;
+}
+.nav {
+  grid-template-columns: 2fr 76.8px 76.8px minmax(200px, 3fr);
+}
+.nav > div:nth-child(2) {
+  background-image: url(../images/bell.svg);
+  margin: 25px;
+}
+.nav > div:nth-child(3) {
+  background-image: url(../images/av2.svg);
+  margin: 15px;
+  border-radius: 50%;
+}
+.nav > p {
+  margin: 25px;
+  align-self: center;
+  color: white;
+  font-size: 1.1rem;
+}
+.personal {
+  margin-left: 25px;
+  grid-template-columns: 115.2px 1fr;
+  align-items: center;
+}
+.personal > div:first-child {
+  align-self: stretch;
+  margin: 15px;
+  border-radius: 50%;
+  background-image: url(../images/av2.svg);
+}
+.personal > div:last-child {
+  margin-left: 15px;
+}
+.nav-buttons {
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-right: 25px;
+  align-items: center;
+  gap: 30px;
+}
+button {
+  height: 50px;
+  border-radius: 25px;
+  border-style: none;
+  color: white;
+  font-weight: bold;
+  font-size: 1.2rem;
+  background-color: rgb(17, 125, 203);
+}
+
+/* CONTENT */
+.content {
+  background-color: var(--raisin-black);
+  grid-template: 1fr 1fr / minmax(400px, 3fr) minmax(300px, 1fr);
+  padding: 25px;
+  gap: 25px;
+}
+.projects {
+  grid-area: 1 / 1 / -1 / 2;
+}
+.projects-grid {
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 25px;
+  margin-top: 25px;
+}
+.projects-grid > div {
+  height: 225px;
+  max-width: 450px;
+  background-color: var(--vanilla);
+  border-radius: 10px;
+  display: grid;
+  grid-template: 3fr 1fr / 7px auto;
+  overflow: hidden;
+  cursor: pointer;
+}
+.decal {
+  grid-area: 1 / 1 / -1 / 2;
+  background-color: var(--coquelicot);
+}
+.project-content,
+.announcements-content > div {
+  padding: 20px;
+  margin-top: 15px;
+}
+.project-buttons {
+  display: grid;
+  grid-template-columns: repeat(3, 30px);
+  margin-right: 20px;
+  justify-content: end;
+  gap: 30px;
+}
+.announcements,
+.trending {
+  grid-template-rows: min-content auto;
+
+}
+.announcements-content,
+.trending-content {
+  margin-top: 25px;
+  max-height: 320px;
+  background-color: var(--vanilla);
+  border-radius: 10px;
+  overflow: auto;
+}
+.trending-content {
+  grid-template-rows: repeat(4, 25%);
+
+  padding: 20px;
+}
+.trending-profile {
+  grid-template-columns: 70px auto;
+}
+.trending-dp {
+  margin: 10px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--raisin-black);
+}
+.trending-dp + div {
+  align-self: center;
+  margin-left: 10px;
+  margin-top: -5px;
+}
+
+/* text and details */
+h2 {
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: white;
+}
+h3 {
+  font-weight: 600;
+  font-size: 1.3rem;
+}
+p {
+  color: rgb(44, 44, 44);
+  font-size: 1.0rem;
+}
+svg {
+  color: red;
+}
+.project-content > p {
+  margin-top: 8px;
+}
+h4 {
+  font-weight: 600;
+}
+.announcements-content p {
+  margin-top: 6px;
+  font-size: 0.9rem;
+  color: rgb(44, 44, 44);
+}
+hr {
+  border-color: var(--raisin-black);
+}
+.trending-dp + div > p {
+  font-size: 0.9rem;
+}
+.trending-dp + div > p:first-child {
+  font-weight: 600;
+  color: rgb(24, 24, 24);
+}
+.trending-dp.one {
+  background-image: url(../images/av1.svg);
+}
+.trending-dp.two {
+  background-image: url(../images/av2.svg);
+}
+.trending-dp.three {
+  background-image: url(../images/av3.svg);
+}
+.trending-dp.four {
+  background-image: url(../images/av4.svg);
+}
+button:hover {
+  background-color: var(--vanilla);
+  cursor: pointer;
+  color: rgb(24, 24, 24);
+}
+.personal p{
+  color: white;
+  margin-bottom: 5px;
+  font-size: 0.9rem;
+}
+.personal p:last-child {
+  font-size: 1.4rem;
+}
+.aside .sub-title {
+  align-self: center;
+  margin-left: 10px;
+  font-size: 1.2rem;
+  color: white;
+}
+.dashboard-title {
+  align-self: center;
+  margin-left: 10px;
+  color: white;
+}
+.sub-image {
+  margin: 8px;
+}
+.main-image {
+  background-image: url(../images/dash.svg);
+}
+.sub-image.one {
+  background-image: url(../images/home.svg);
+}
+.sub-image.two {
+  background-image: url(../images/profile.svg);
+}
+.sub-image.three {
+  background-image: url(../images/messages.svg);
+}
+.sub-image.four {
+  background-image: url(../images/history.svg);
+}
+.sub-image.five {
+  background-image: url(../images/tasks.svg);
+}
+.sub-image.six {
+  background-image: url(../images/communities.svg);
+}
+.sub-image.seven {
+  background-image: url(../images/settings.svg);
+}
+.sub-image.eight {
+  background-image: url(../images/support.svg);
+}
+.sub-image.nine {
+  background-image: url(../images/privacy.svg);
+}
+
+.projects-grid > div:hover {
+  background-color: rgb(213, 208, 168);
+}
+.aside > div > div:hover {
+  background-color: rgb(47, 60, 66);
+  cursor: pointer;
 }
